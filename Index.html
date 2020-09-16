@@ -1,0 +1,654 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>VWO</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+        integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <link rel="stylesheet" href="./Css/style.css">
+</head>
+<style>
+    .navbar {
+        background-color: white;
+        font: 1em sans-serif;
+        font-size: larger;
+    }
+
+    .navbar a {
+        color: purple;
+        font-style: inherit;
+        font-size: 16px;
+        font-weight: medium;
+    }
+
+    .row li {
+        width: 33.3%;
+        float: left;
+    }
+
+    img {
+        border: 0 none;
+        display: inline-block;
+        height: auto;
+        max-width: 100%;
+        vertical-align: middle;
+    }
+
+    .card:hover {
+        border-color: purple;
+        opacity: 5;
+    }
+
+    .home-design-info figure img,
+    .home-dev-info figure img {
+        width: 200px;
+        height: 200px;
+    }
+
+    #principal-content {
+        background: none repeat scroll 0 0 #fff;
+        padding: 0;
+        position: relative;
+        z-index: 980;
+    }
+
+    #principal-content #develop {
+        margin: 1em 0;
+        text-align: center;
+    }
+
+    Bootstrap 4 (4.0.0-alpha.2) uses the css property column-count in the card-columns class to define how many columns of cards would be displayed inside the div element. But this property has only two values: The default value 1 for small screens (max-width: 34em) The value 3 for all other sizes (min-width: 34em) Here's how it is implemented in bootstrap.min.css :
+
+
+    @media (min-width: 34em) {
+        .card-columnss {
+            -webkit-column-count: 3;
+            -moz-column-count: 3;
+            column-count: 3;
+            ⋮
+        }
+
+        ⋮
+    }
+
+    To make the card stacking responsive,
+    you can add the following media queries to your css file and modify the values for min-width as per your requirements : @media (min-width: 34em) {
+        .card-columnss {
+            -webkit-column-count: 2;
+            -moz-column-count: 2;
+            column-count: 2;
+        }
+    }
+
+    @media (min-width: 48em) {
+        .card-columnss {
+            -webkit-column-count: 3;
+            -moz-column-count: 3;
+            column-count: 3;
+        }
+    }
+
+    @media (min-width: 62em) {
+        .card-columnss {
+            -webkit-column-count: 4;
+            -moz-column-count: 4;
+            column-count: 4;
+        }
+    }
+
+    @media (min-width: 75em) {
+        .card-columnss {
+            -webkit-column-count: 4;
+            -moz-column-count: 4;
+            column-count: 4;
+        }
+    }
+
+    blockquote {
+        position: relative;
+        text-align: center;
+        padding: 1.2em 0 2em 38px;
+        border: none;
+        margin: 20px auto 20px;
+        max-width: 1000px;
+        width: 100%;
+        display: block;
+    }
+
+    blockquote:after {
+        content: "";
+        display: block;
+        width: 2px;
+        height: 100%;
+        position: absolute;
+        left: 0;
+        color: #66cc66;
+        top: 0;
+        background: -moz-linear-gradient(top, #66cc66 0%, #66cc66 60%, rgba(255, 255, 255, 0) 100%);
+        background: -webkit-linear-gradient(top, #66cc66 0%, #66cc66 60%, rgba(255, 255, 255, 0) 100%);
+        /* background: linear-gradient(to bottom,#66cc66 0%,#66cc66 60%,rgba(255,255,255,0) 100%); */
+    }
+
+    blockquote:before {
+        content: "\f10d";
+        font-family: "fontawesome";
+        font-size: 20px;
+        display: block;
+        margin-bottom: 0.8em;
+        font-weight: 400;
+        color: #66cc66;
+    }
+
+    blockquote>cite,
+    blockquote>p>cite {
+        display: block;
+        font-size: 16px;
+        line-height: 1.3em;
+        font-weight: 700;
+        font-style: normal;
+        margin-top: 1.1em;
+        letter-spacing: 0;
+        font-style: italic;
+    }
+</style>
+
+<body>
+
+    <header>
+
+        <div class="container-fluid p-0">
+            <nav class="navbar navbar-expand-lg navbar-dark fixed-top navbar-default">
+                <a class="navbar-brand" href="#">
+                    <img src="./Images/vwo-logo-color.svg" alt="logo" height="80" width="80">
+                </a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse"
+                    data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                    aria-label="Toggle navigation" style="background-color: gray;">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav mr-auto">
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="color: black;">
+                                Products
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <a class="dropdown-item" href="#">VWO Testing</a>
+                                <a class="dropdown-item" href="#">VWO Insights</a>
+                                <div class="dropdown-divider"></div>
+                                <a class="dropdown-item" href="#">VWO FullStack</a>
+                            </div>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#" style="color: black;">Pricing</a>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="color: black;">
+                                Solutions
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <a class="dropdown-item" href="#">eCommerce</a>
+                                <a class="dropdown-item" href="#">eLearning</a>
+                                <div class="dropdown-divider"></div>
+                                <a class="dropdown-item" href="#">Enterprises</a>
+                            </div>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="color: black;">
+                                Why VWO?
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <a class="dropdown-item" href="#">Proven Products</a>
+                                <a class="dropdown-item" href="#">Gurantee of Success</a>
+                                <div class="dropdown-divider"></div>
+                                <a class="dropdown-item" href="#">Thoughful technology</a>
+                            </div>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="color: black;">
+                                Resources
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <a class="dropdown-item" href="#">VWO Library</a>
+                                <a class="dropdown-item" href="#">VWO blog</a>
+                                <div class="dropdown-divider"></div>
+                                <a class="dropdown-item" href="#">VWO Succes stories</a>
+                            </div>
+                        </li>
+                    </ul>
+                    <form class="form-inline my-2 my-lg-0">
+                        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">FREE TRIAL</button>
+                        <button class="btn btn-outline-success my-2 my-sm-0" type="submit"
+                            style="background-color: brown; color: white;">REQUEST
+                            DEMO</button>
+                    </form>
+                </div>
+            </nav>
+        </div>
+        <br>
+        <br>
+        <div class="container text-center">
+            <div class="row">
+                <div class="col-md-7 col-sm-12">
+                    <h1
+                        style="margin-left: -60px; margin-top: 150px; text-align: justify; color: purple; font-size: 50px;">
+                        <b>
+                            SCALE YOUR
+                            A/B TESTING<br>
+                            WITH VWO</b></h1>
+                    <h6 style="margin-left: -60px; margin-top: 30px; text-align: justify;">Companies run their
+                        marketing and product
+                        experiments on VWO <br>
+                        because we bring together their entire org to conduct succesfull A/B<br>
+                        tests across the customer lifecycle.</h6><br>
+                    <button class="btn btn-outline-success my-2 my-sm-0" type="submit"
+                        style="margin-left: -430px; background-color: green; color: white;">REQUEST DEMO</button>
+                    <button class="btn btn-outline-success my-2 my-sm-0" type="submit"
+                        style="margin-left: -320px;">START FREE TRIAL</button>
+                </div>
+                <div class="col-md-5 col-sm-12 h-25"><br><br><br>
+                    <img src="Images/banner-yellow@2x.png" alt="Man" height="550" width="550">
+                </div>
+            </div>
+        </div><br><br><br><br><br>
+        <div class="purchase text-center">
+            <h1 style="font-size: 18px;">TRUSTED BY 2500+ BRANDS ACROSS 90+ COUNTRIES</h1>
+            <div class="row">
+                <div id="small-img" class="col-xs-12 col-sm-12 col-md-12 col-lg-12 center">
+                    <ul>
+                        <li>
+                            <img src="./Images/pennstate.svg" class="img-responsive inline-block"
+                                alt="Responsive image" />
+                        </li>
+                        <li>
+                            <img src="./Images/norwegian.svg" class="img-responsive inline-block"
+                                alt="Responsive image" />
+                        </li>
+                        <li>
+                            <img src="./Images/hilton.svg" class="img-responsive inline-block" alt="Responsive image" />
+                        </li>
+                        <li>
+                            <img src="./Images/ebay.svg" class="img-responsive inline-block" alt="Responsive image" />
+                        </li>
+                        <li>
+                            <img src="./Images/disney.svg" class="img-responsive inline-block" alt="Responsive image" />
+                        </li>
+                        <li>
+                            <img src="./Images/amd.svg" class="img-responsive inline-block" alt="Responsive image" />
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div><br><br><br><br><br>
+        <div class="purchase text-center">
+            <h1 style="color: purple;">Build extraordinary digital experiences<br>
+                that convert better using a single platform</h1><br><br>
+            <div class="container">
+                <div class="card-columns">
+                    <div class="card">
+                        <div class="card-body text-center" style="width:20rem; height: 10rem;"><br>
+                            <img src="./Images/icon-experiments.svg" /><br>
+                            <a class=" card-text"
+                                style="font-family: Georgia, 'Times New Roman', Times, serif; color: purple;">
+                                <strong>VWO Testing</strong></span></a><br>
+                            <a class=" card-text" style="color: purple;">Test experiences, exactly the way you want.</a>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-body text-center" style="width:20rem; height: 10rem;"><br>
+                            <img src="./Images/icon-engage.svg" /><br>
+                            <a class=" card-text"
+                                style="font-family: Georgia, 'Times New Roman', Times, serif; color: purple;">
+                                <strong>VWO Insights</strong></span></a><br>
+                            <a class=" card-text" style="color: purple;">Stop guessing what your visitors really
+                                want.</a>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-body text-center" style="width:20rem; height: 10rem;"><br>
+                            <img src="./Images/icon-user-insights.svg" /><br>
+                            <a class=" card-text"
+                                style="font-family: Georgia, 'Times New Roman', Times, serif; color: purple;">
+                                <strong>VWO FullStack</strong></span></a><br>
+                            <a class=" card-text" style="color: purple;">Test your product & feature experiences.</a>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-body text-center" style="width:20rem; height: 10rem;"><br>
+                            <img src="./Images/icon-plan.svg" /><br>
+                            <a class=" card-text"
+                                style="font-family: Georgia, 'Times New Roman', Times, serif; color: purple;">
+                                <strong>VWO Engage</strong></span></a><br>
+                            <a class=" card-text" style="color: purple;">engage with visitors that drop & drive them
+                                back to your site.</a>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-body text-center" style="width:20rem; height: 10rem;"><br>
+                            <img src="./Images/icon-fullstack.svg" /><br>
+                            <a class=" card-text"
+                                style="font-family: Georgia, 'Times New Roman', Times, serif; color: purple;">
+                                <strong>VWO Plan</strong></span></a><br>
+                            <a class=" card-text" style="color: purple;">Manage & prioritize your growth program
+                                centrally.</a>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-body text-center" style="width:20rem; height: 10rem;"><br>
+                            <img src="./Images/icon-services.svg" /><br>
+                            <a class=" card-text"
+                                style="font-family: Georgia, 'Times New Roman', Times, serif; color: purple;">
+                                <strong>VWO Services</strong></span></a><br>
+                            <a class=" card-text" style="color: purple;">Rely on our in-house experts to deliver
+                                measurable results.</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <div class="container">
+            <div class="col text-center">
+                <button type="button" class="btn btn-success btn-lg"
+                    style="align:center; margin-top: 50px; font-size: 1vw;">CHECK
+                    OUT THE
+                    CONNECTED VWO
+                    PLATFORM</button>
+            </div>
+        </div><br><br><br>
+        <section id="principal-content">
+            <div class="container bootstrap snippets bootdey">
+                <div class="row">
+                    <div class="col-md-12">
+                        <article>
+                            <header>
+                                <h1 class=" text-center" style="color:purple;">
+                                    Here's how VWO Experience Optimization<br> Platform helps you to continuously<br>
+                                    improve
+                                    your KPIs
+                                </h1>
+                            </header><br><br>
+                            <div class="row" id="design">
+                                <div class="col-md-4 col-md-offset-1">
+                                    <div class="home-design-info">
+                                        <figure>
+                                            <img class="img-responsive" src="./Images/variations.png">
+                                        </figure>
+                                    </div>
+                                </div> <!-- 4 -->
+                                <div class="col-md-6">
+                                    <div class="deets">
+                                        <h3 class="text" style="color:purple;"><span
+                                                class="glyphicon glyphicon-arrow-right"></span>Grow conversions by
+                                            rapidly testing tons of new ideas</h3>
+                                        <p style="color:rgb(94, 99, 105);">Easily create and run tests to increase
+                                            revenue, combat cart abandonment, and
+                                            build stellar digital experiences that convert. Without coding or involving
+                                            IT.</p>
+                                    </div>
+                                </div>
+                            </div> <!-- /row -->
+                            <div class="row" id="develop">
+                                <div class="col-md-4 col-md-push-7">
+                                    <div class="home-dev-info">
+                                        <figure>
+                                            <img class="img-responsive" src="./Images/insights.png">
+                                        </figure>
+                                    </div>
+                                </div> <!-- col -->
+                                <div class="col-md-6 col-md-pull-3">
+                                    <div class="deets">
+                                        <h3 class="text" style="color:purple;">Discover exactly what is limiting your
+                                            conversion
+                                            rate<span class="glyphicon glyphicon-arrow-left"></span>
+                                        </h3>
+                                        <p style="color:rgb(94, 99, 105);">
+                                            Combine the power of session recordings, heatmaps, on-page surveys, and more
+                                            to diagnose problem areas in your visitors’ experiences. So you can fix
+                                            what's broken. And make the good stuff even better.
+                                        </p>
+                                    </div>
+                                </div> <!-- col -->
+                            </div> <!-- /row -->
+                            <div class="row" id="design">
+                                <div class="col-md-4 col-md-offset-1">
+                                    <div class="home-design-info">
+                                        <figure>
+                                            <img class="img-responsive" src="./Images/fullstack.png">
+                                        </figure>
+                                    </div>
+                                </div> <!-- 4 -->
+                                <div class="col-md-6">
+                                    <div class="deets">
+                                        <h3 class="text" style="color:purple;"><span
+                                                class="glyphicon glyphicon-arrow-right"></span>
+                                            Amplify your experimentation reach & performance with server side testing
+                                        </h3>
+                                        <p style="color:rgb(94, 99, 105);">Embrace multi-channel experimentation. Test
+                                            anything, be it product feature
+                                            changes, search algorithms, subscription workflows, and any other big idea
+                                            that can help you move the north star metric for your business.</p>
+                                    </div>
+                                </div>
+                                <div class="row" id="develop">
+                                    <div class="col-md-4 col-md-push-7">
+                                        <div class="home-dev-info">
+                                            <figure>
+                                                <img class="img-responsive" src="./Images/testing.png">
+                                            </figure>
+                                        </div>
+                                    </div> <!-- col -->
+                                    <div class="col-md-6 col-md-pull-3">
+                                        <div class="deets">
+                                            <h3 class="text" style="color:purple;">Bring lost opportunities back to your
+                                                marketing
+                                                funnel<span class="glyphicon glyphicon-arrow-left"></span> </h3>
+                                            <p style="color:rgb(94, 99, 105);">
+                                                Think beyond emails and leverage new-age channels. Keep your visitors
+                                                engaged with automated marketing campaigns through web push
+                                                notifications & Facebook Messenger.
+                                            </p>
+                                        </div>
+                                    </div> <!-- col -->
+                                    <div class="row" id="design">
+                                        <div class="col-md-4 col-md-offset-1">
+                                            <div class="home-design-info">
+                                                <figure>
+                                                    <img class="img-responsive" src="./Images/plan.svg">
+                                                </figure>
+                                            </div>
+                                        </div> <!-- 4 -->
+                                        <div class="col-md-6">
+                                            <div class="deets">
+                                                <h3 class="text" style="color:purple;"><span
+                                                        class="glyphicon glyphicon-arrow-right"></span>See your core
+                                                    conversion metrics go up every week</h3>
+                                                <p style="color:rgb(94, 99, 105);">With in-built program management,
+                                                    your teams can collaboratively
+                                                    discover growth opportunities in your visitor's journey, build a
+                                                    pipeline of high-impact experimentation ideas, and see them all the
+                                                    way to completion.</p>
+                                            </div>
+                                        </div>
+                        </article>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <div class="purchase text-center">
+            <h1>Build extraordinary digital experiences<br>
+                that convert better using a single platform</h1><br><br>
+            <div class="container">
+                <div class="card-columnss" style="width: 1100px;">
+                    <div class="card"
+                        style="box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);">
+                        <div class="card-body text-center" style="width:12rem; height: 10rem;">
+                            <img class="img-responsive" src="./Images/272_WorkZone.png" alt="betfair"
+                                style="height:50px; width:160px; margin-right: 100px;">
+                            <a class=" card-text"
+                                style="font-family: Georgia, 'Times New Roman', Times, serif; color: purple; font-size: 14px;"><br>
+                                <strong>Form Submissions</strong></span></a><br>
+                            <p class=" card-text" style="color: green; font-size: 40px; margin-right: 50px;"><b>34%</b>
+                            </p>
+                        </div>
+                    </div>
+                    <div class="card"
+                        style="box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);">
+                        <div class="card-body text-center" style="width:12rem; height: 10rem;"><br>
+                            <img class="img-responsive" src="./Images/279_Zalora.png" alt="zalora"
+                                style="height:22px; width:150px; margin-right: 100px; margin-top: -30px;">
+                            <a class=" card-text"
+                                style="font-family: Georgia, 'Times New Roman', Times, serif; color: purple; font-size: 14px;"><br>
+                                <strong>Checkout Rate</strong></span></a><br>
+                            <p class=" card-text" style="color: green; font-size: 40px; margin-right: 50px;"><b>12%</b>
+                        </div>
+                    </div>
+                    <div class="card"
+                        style="box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);">
+                        <div class="card-body text-center" style="width:12rem; height: 10rem;"><br>
+                            <img class="img-responsive" src="./Images/241_Toms-Planner.png" alt="betfair"
+                                style="height:50px; width:160px; margin-right: 100px; margin-top: -25px;">
+                            <a class=" card-text"
+                                style="font-family: Georgia, 'Times New Roman', Times, serif; color: purple; font-size: 14px; margin-right: 60px;"><br>
+                                <strong>Sign-ups</strong></span></a><br>
+                            <p class=" card-text" style="color: green; font-size: 40px; margin-right: 50px;"><b>44%</b>
+                            </p>
+                        </div>
+                    </div>
+                    <div class="card"
+                        style="box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);">
+                        <div class="card-body text-center" style="width:20rem; height: 10rem;"><br>
+                            <img class="img-responsive" src="./Images/94_Flos-USA.png" alt="betfair"
+                                style="height:22px; width:90px; margin-right: 170px; margin-top: -25px;">
+                            <a class=" card-text"
+                                style="font-family: Georgia, 'Times New Roman', Times, serif; color: purple; font-size: 14px; margin-right: 160px;"><br>
+                                <strong>Checkout Rate</strong></span></a><br>
+                            <p class=" card-text" style="color: green; font-size: 40px; margin-right: 160px;">
+                                <b>125%</b>
+                            </p>
+                        </div>
+                    </div>
+                    <div class="card"
+                        style="box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);">
+                        <div class="card-body text-center" style="width:22rem; height: 10rem;"><br>
+                            <img class="img-responsive" src="./Images/30_Betfair.png" alt="betfair"
+                                style="height:22px; width:90px; margin-right: 200px; margin-top: -35px;">
+                            <a class=" card-text"
+                                style="font-family: Georgia, 'Times New Roman', Times, serif; color: purple; font-size: 14px; margin-right: 160px;"><br>
+                                <strong>Click-through Rate</strong></span></a><br>
+                            <p class=" card-text" style="color: green; font-size: 40px; margin-right: 240px;">
+                                <b>7%</b>
+                            </p>
+                        </div>
+                    </div>
+                    <div class="card"
+                        style="box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);">
+                        <div class="card-body text-center" style="width:20rem; height: 10rem;"><br>
+                            <img class="img-responsive" src="./Images/213_Showpo..png" alt="betfair"
+                                style="height:22px; width:90px; margin-right: 170px; margin-top: -25px;">
+                            <a class=" card-text"
+                                style="font-family: Georgia, 'Times New Roman', Times, serif; color: purple; font-size: 14px; margin-right: 200px;"><br>
+                                <strong>Revenue</strong></span></a><br>
+                            <p class=" card-text" style="color: green; font-size: 40px; margin-right: 210px;">
+                                <b>6%</b>
+                            </p>
+                        </div>
+                    </div>
+                    <div class="card"
+                        style="box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);">
+                        <div class="card-body text-center" style="width:24rem; height: 10rem;"><br>
+                            <img class="img-responsive" src="./Images/180_PayU.png" alt="betfair"
+                                style="height:30px; width:90px; margin-right: 230px; margin-top: -40px;">
+                            <a class=" card-text"
+                                style="font-family: Georgia, 'Times New Roman', Times, serif; color: purple; font-size: 14px; margin-right: 230px;"><br>
+                                <strong>Checkout Rate</strong></span></a><br>
+                            <p class=" card-text" style="color: green; font-size: 40px; margin-right: 280px;">
+                                <b>6%</b>
+                            </p>
+                        </div>
+                    </div>
+                    <div class="card"
+                        style="box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);">
+                        <div class="card-body text-center" style="width:12rem; height: 10rem;"><br>
+                            <img class="img-responsive" src="./Images/251_Ubisoft-Entertainment-SA.png" alt="betfair"
+                                style="height:40px; width:110px; margin-right: 230px; margin-top: -40px;">
+                            <a class=" card-text"
+                                style="font-family: Georgia, 'Times New Roman', Times, serif; color: purple;">
+                                <strong>Sign-ups</strong></span></a><br>
+                            <a class=" card-text" style="color: green; font-size: 40px;">12%</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div><br><br><br>
+        <link rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <blockquote class="wp-block-quote">
+            <p style="font-size: 22px; font-weight: regular;">We ran a series of A/B tests based on the data we gathered
+                by using Heatmaps,
+                Scrollmaps and Surveys
+                available on the VWO Platform. It helped us to identify key elements on our websites that needed a
+                deeper look. </p><cite><b>Jenny Hughes</b><br>Digital Marketing</cite><br>
+            <img class="img-responsive" src="./Images/251_Ubisoft-Entertainment-SA.png" alt="betfair"
+                style="height: 60px; width: 180px;">
+        </blockquote><br><br><br>
+
+        <div class="col-md-6 mb-4" style="margin-left: 280px;">
+
+
+            <img class="rounded-circle z-depth-2" alt="100x100" src="./Images/jenny.hughes-300x300.jpg"
+                data-holder-rendered="true" style="height: 100px; width: 100px; margin-right: 70px;">
+            <img class="rounded-circle z-depth-2" alt="100x100" src="./Images/adam.jpeg" data-holder-rendered="true"
+                style="height: 100px; width: 100px; margin-right: 70px;">
+            <img class="rounded-circle z-depth-2" alt="100x100" src="./Images/foto3.jpeg" data-holder-rendered="true"
+                style="height: 100px; width: 100px; margin-right: 70px;">
+            <img class="rounded-circle z-depth-2" alt="100x100" src="./Images/mason-sq.jpg" data-holder-rendered="true"
+                style="height: 100px; width: 100px;">
+        </div><br><br>
+        <div class="container-fluid no-padding">
+            <div class="row">
+
+                <div class="col-md-12">
+
+                    <img src="./Images/build-for.jpg" alt="test" class="img-responsive">
+
+                    <div class="carousel-caption">
+                        <h1>Built for the enterprise</h1><br>
+                        <h5 style="color: gray;">Replace multiple disconnected systems with the VWO connected platform.
+                            Together with
+                            security you can trust, premium support, consulting and implementation services, VWO is the
+                            enterprise experience optimization & growth solution you are looking for.</h5>
+                        <a href="#">Learn More </a>
+                    </div>
+
+                </div>
+
+            </div>
+
+
+        </div>
+
+
+        </div>
+    </header>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"
+        integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg=="
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
+        integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous">
+    </script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"
+        integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous">
+    </script>
+</body>
+
+</html>
